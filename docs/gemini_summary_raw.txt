@@ -1,0 +1,597 @@
+PS C:\> ssh root@187.127.105.183
+root@187.127.105.183's password: 
+Welcome to Ubuntu 24.04.4 LTS (GNU/Linux 6.8.0-117-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Sun May 24 11:44:32 UTC 2026
+
+  System load:  0.52               Processes:             177
+  Usage of /:   51.5% of 47.39GB   Users logged in:       0
+  Memory usage: 50%                IPv4 address for eth0: 187.127.105
+  Swap usage:   0%                 IPv6 address for eth0: 2a02:4780:5
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how 
+   just raised the bar for easy, resilient and secure K8s cluster dep
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+Expanded Security Maintenance for Applications is not enabled.
+
+36 updates can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+1 updates could not be installed automatically. For more details,
+see /var/log/unattended-upgrades/unattended-upgrades.log
+
+Last login: Sun May 24 08:48:48 2026 from 139.228.37.195
+root@srv1575656:~# ;20R;24R;28Rsudo mkdir -p /home/node/.openclaw/skills/olsera/scripts
+
+sudo tee /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh > /dev/null <<'EOF' 
+#!/usr/bin/env bash
+set -euo pipefail
+
+PROMPT="${1:-$(cat -)}"
+MODEL="${MODEL:-google/gemini-3-pro-preview}"
+API_URL="${API_URL:-https://generativelanguage.googleapis.com/v1/models/$MODEL:generateText}"
+MAX_TOKENS="${MAX_TOKENS:-512}"
+
+if [ -n "${GEMINI_ACCESS_TOKEN:-}" ]; then
+  TOKEN="$GEMINI_ACCESS_TOKEN"
+elif command -v gcloud >/dev/null 2>&1; then
+  TOKEN="$(gcloud auth print-access-token)"
+else
+  echo "ERROR: No access token. Set GEMINI_ACCESS_TOKEN or install/configure gcloud." >&2
+  exit 2
+fi
+
+curl -sS -X POST "$API_URL" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json; charset=utf-8" \
+  -d "{
+    \"prompt\": { \"text\": \"${PROMPT//\"/\\\"}\" },
+    \"maxOutputTokens\": ${MAX_TOKENS}
+  }"
+EOF
+
+ls -la /home/node/.openclaw/credentials || truemini_call.sh "Tes koneksi ke Gemini dar-bash: syntax error near unexpected token `;'
+tee: /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh: No such file or directory
+chmod: cannot access '/home/node/.openclaw/skills/olsera/scripts/gemini_call.sh': No such file or directory
+-bash: /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh: No such file or directory
+ls: cannot access '/home/node/.openclaw/credentials': No such file or directory
+root@srv1575656:~# # buat direktori
+sudo mkdir -p /home/node/.openclaw/skills/olsera/scripts
+
+# tulis skrip (paste seluruh blok antara EOF)
+sudo tee /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh > /dev/null <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+
+PROMPT="${1:-$(cat -)}"
+MODEL="${MODEL:-google/gemini-3-pro-preview}"
+API_URL="${API_URL:-https://generativelanguage.googleapis.com/v1/models/$MODEL:generateText}" 
+MAX_TOKENS="${MAX_TOKENS:-512}"
+
+if [ -n "${GEMINI_ACCESS_TOKEN:-}" ]; then
+  TOKEN="$GEMINI_ACCESS_TOKEN"
+elif command -v gcloud >/dev/null 2>&1; then
+  TOKEN="$(gcloud auth print-access-token)"
+else
+  echo "ERROR: No access token. Set GEMINI_ACCESS_TOKEN or install/configure gcloud." >&2
+  exit 2
+fi
+
+curl -sS -X POST "$API_URL" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json; charset=utf-8" \
+  -d "{
+    \"prompt\": { \"text\": \"${PROMPT//\"/\\\"}\" },
+    \"maxOutputTokens\": ${MAX_TOKENS}
+  }"
+EOF
+
+# beri izin
+ls -la /home/node/.openclaw/credentials || trueak)i_call.sh "Tes koneksi ke Gemini dari OpenCsudo: unknown user node
+sudo: error initializing audit plugin sudoers_audit
+ls: cannot access '/home/node/.openclaw/credentials': No such file or directory
+root@srv1575656:~# 
+root@srv1575656:~# 
+root@srv1575656:~# ^[[200~sudo mkdir -p /home/node/.openclaw/skills/olsera/scripts~DDDDDDDDDDDDDDDDD
+sudo: command not found
+root@srv1575656:~# sudo mkdir -p /home/node/.openclaw/skills/olsera/scripts
+root@srv1575656:~# ^[[200~sudo tee /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh > /dev/null <<'EOF'~
+> 
+> exit
+> ls
+> sudo
+> exit
+> cd\
+> cd..
+> ^[[200~sudo tee /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh > /dev/null <<'EOF'
+> #!/usr/bin/env bash
+> set -euo pipefail
+> 
+> PROMPT="${1:-$(cat -)}"
+> MODEL="${MODEL:-google/gemini-3-pro-preview}"
+> API_URL="${API_URL:-https://generativelanguage.googleapis.com/v1/models/$MODEL:generateText}"
+> MAX_TOKENS="${MAX_TOKENS:-512}"
+> 
+> if [ -n "${GEMINI_ACCESS_TOKEN:-}" ]; then
+>   TOKEN="$GEMINI_ACCESS_TOKEN"
+> elif command -v gcloud >/dev/null 2>&1; then
+>   TOKEN="$(gcloud auth print-access-token)"
+> else
+>   echo "ERROR: No access token. Set GEMINI_ACCESS_TOKEN or install/configure gcloud." >&2
+>   exit 2
+> fi
+> 
+> curl -sS -X POST "$API_URL" \
+>   -H "Authorization: Bearer $TOKEN" \
+>   -H "Content-Type: application/json; charset=utf-8" \
+>   -d "{
+>     \"prompt\": { \"text\": \"${PROMPT//\"/\\\"}\" },
+>     \"maxOutputTokens\": ${MAX_TOKENS}
+>   }"
+> EOF~
+sudo: command not found
+root@srv1575656:~# sudo tee /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh > /dev/null <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+
+PROMPT="${1:-$(cat -)}"
+MODEL="${MODEL:-google/gemini-3-pro-preview}"
+API_URL="${API_URL:-https://generativelanguage.googleapis.com/v1/models/$MODEL:generateText}" 
+MAX_TOKENS="${MAX_TOKENS:-512}"
+
+if [ -n "${GEMINI_ACCESS_TOKEN:-}" ]; then
+  TOKEN="$GEMINI_ACCESS_TOKEN"
+elif command -v gcloud >/dev/null 2>&1; then
+  TOKEN="$(gcloud auth print-access-token)"
+else
+  echo "ERROR: No access token. Set GEMINI_ACCESS_TOKEN or install/configure gcloud." >&2
+  exit 2
+fi
+
+curl -sS -X POST "$API_URL" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json; charset=utf-8" \
+  -d "{
+    \"prompt\": { \"text\": \"${PROMPT//\"/\\\"}\" },
+    \"maxOutputTokens\": ${MAX_TOKENS}
+  }"
+EOF
+root@srv1575656:~# sudo chmod +x /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh
+root@srv1575656:~# sudo -u node /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh "Tes koneksi ke Gemini dari OpenClaw"
+sudo: unknown user node
+sudo: error initializing audit plugin sudoers_audit
+root@srv1575656:~# ls -la /home/node/.openclaw/credentials || true
+ls: cannot access '/home/node/.openclaw/credentials': No such file or directory
+root@srv1575656:~# # (A) daftar container
+sudo docker ps --format '{{.ID}} {{.Names}} {{.Image}}' || true
+
+# (B) periksa apakah ada user node dan list /home
+id node || true
+ls -la /home || true
+
+# (C) cari folder .openclaw di sistem (butuh waktu sebentar)
+sudo find / -type d -name ".openclaw" 2>/dev/null | sed -n '1,200p'
+5984e6dfcf5f openclaw_openclaw-gateway.1.t4io830910tia5bahraxohtfb ghcr.io/openclaw/openclaw:2026.2.3
+aa9565a2de22 grandivocloud_wordpress-db_phpmyadmin.1.837e4jzs679jsrxwy4ae4vrap phpmyadmin:5.2.1
+9a0ec5687bf0 wp_wp-db_phpmyadmin.1.p06uwldqmbl8g48x351161l1m phpmyadmin:5.2.1
+8237508450f5 grandivocloud_wordpress-db.1.kaqmkj5yyxa9h4wa0udpkyu9f mariadb:11
+0f80c3022035 wp_wp-db_dbgate.1.s3ljlz17v4gq7kipe623e80r5 dbgate/dbgate:6.0.0
+8c03d19e7723 grandivocloud_wordpress.1.gn6m692c1dqpb6x2fpa0rt2u8 wordpress:latest
+97db39c7ba00 easypanel.1.lwotwx83esqnpbef1q02jvcec easypanel/easypanel:latest
+5c674f1aa02c wp_wp-db.1.umq7uu4qpybfsp06pgp540hcu mariadb:11
+7289b8b0aaf0 easypanel-traefik.1.elykbfo7g7jx903runje0ec91 traefik:3.6.7
+5313c4001a06 wp_wp.1.pkpy6v17zjbhflb70xok4bcyj easypanel/wp/wp:latest
+id: ‘node’: no such user
+total 20
+drwxr-xr-x  5 root            root            4096 May 24 11:59 .
+drwxr-xr-x 22 root            root            4096 May 24 11:15 ..
+drwxr-x---  3 manus_assistant manus_assistant 4096 May 20 12:02 manus_assistant
+drwxr-xr-x  3 root            root            4096 May 24 11:59 node
+drwxr-x---  3 ubuntu          ubuntu          4096 Mar 31 13:45 ubuntu
+/home/node/.openclaw
+/var/lib/docker/rootfs/overlayfs/5984e6dfcf5f797ff0ade07f93c388f9a8d1292317b73af0fa8b599a388826a7/home/node/.openclaw
+/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/621/fs/home/node/.openclaw
+root@srv1575656:~# sudo docker inspect 5984e6dfcf5f --format '{{json .Mounts}}'
+[{"Type":"volume","Name":"openclaw_openclaw-gateway_config","Source":"/var/lib/docker/volumes/openclaw_openclaw-gateway_config/_data","Destination":"/home/node/.openclaw","Driver":"local","Mode":"z","RW":true,"Propagation":""},{"Type":"volume","Name":"openclaw_openclaw-gateway_workspace","Source":"/var/lib/docker/volumes/openclaw_openclaw-gateway_workspace/_data","Destination":"/home/node/.openclaw/workspace","Driver":"local","Mode":"z","RW":true,"Propagation":""}]
+root@srv1575656:~# sudo docker exec 5984e6dfcf5f sh -c 'mkdir -p /home/node/.openclaw/skills/olsera/scripts'
+root@srv1575656:~# sudo docker exec -i 5984e6dfcf5f sh -c 'cat > /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh <<'"'"'EOF'"'"''
+#!/usr/bin/env sh
+set -eu
+
+PROMPT="${1:-$(cat -)}"
+MODEL="${MODEL:-google/gemini-3-pro-preview}"
+API_URL="${API_URL:-https://generativelanguage.googleapis.com/v1/models/$MODEL:generateText}" 
+MAX_TOKENS="${MAX_TOKENS:-512}"
+
+if [ -n "${GEMINI_ACCESS_TOKEN:-}" ]; then
+  TOKEN="$GEMINI_ACCESS_TOKEN"
+elif command -v gcloud >/dev/null 2>&1; then
+else
+  echo "ERROR: No access token. Set GEMINI_ACCESS_TOKEN or install/configure gcloud." >&2
+  exit 2
+fi
+
+curl -sS -X POST "$API_URL" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json; charset=utf-8" \
+  -d "{
+    \"prompt\": { \"text\": \"${PROMPT//\"/\\\"}\" },
+    \"maxOutputTokens\": ${MAX_TOKENS}
+  }"
+EOF'
+sudo docker exec 5984e6dfcf5f sh -c 'chmod +x /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh && ls -la /home/node/.openclaw/skills/olsera/scripts'
+sudo docker exec 5984e6dfcf5f sh -c 'ls -la /home/node/.openclaw/credentials || true'
+sudo docker exec -it 5984e6dfcf5f sh -c '/home/node/.openclaw/skills/olsera/scripts/gemini_call.sh "Tes koneksi ke Gemini dari OpenClaw" || true'
+# lihat file dan isinya
+sudo docker exec 5984e6dfcf5f sh -c 'ls -la /home/node/.openclaw/skills/olsera/scripts && cat /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh'
+sudo docker exec 5984e6dfcf5f sh -c 'ls -la /home/node/.openclaw/skills/olsera/scripts || true; echo "----"; cat /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh || true'
+sudo docker exec 5984e6dfcf5f sh -c 'id node || true'
+sudo docker exec 5984e6dfcf5f sh -c 'ls -la /home/node/.openclaw/credentials || true'
+sudo docker inspect 5984e6dfcf5f --format '{{json .Mounts}}' | sed 's/\\\"/"/g'
+sudo docker exec -it 5984e6dfcf5f sh -c '/home/node/.openclaw/skills/olsera/scripts/gemini_call.sh "Tes koneksi" || true'
+ERROR: No access token. Set GEMINI_ACCESS_TOKEN or install/configure gcloud.
+logout
+Connection to 187.127.105.183 closed.
+PS C:\> ssh root@187.127.105.183
+root@187.127.105.183's password: 
+Welcome to Ubuntu 24.04.4 LTS (GNU/Linux 6.8.0-117-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Sun May 24 12:14:00 UTC 2026
+
+  System load:  0.38               Processes:             177
+  Usage of /:   51.5% of 47.39GB   Users logged in:       0
+  Memory usage: 53%                IPv4 address for eth0: 187.127.105.183
+  Swap usage:   0%                 IPv6 address for eth0: 2a02:4780:5e:bc81::1
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+Expanded Security Maintenance for Applications is not enabled.
+
+36 updates can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+1 updates could not be installed automatically. For more details,
+see /var/log/unattended-upgrades/unattended-upgrades.log
+
+Last login: Sun May 24 11:44:33 2026 from 139.228.37.195
+root@srv1575656:~# sudo docker exec 5984e6dfcf5f sh -c 'ls -la /home/node/.openclaw/skills/olsera/scripts || true; echo "----"; cat /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh || true'
+total 8
+drwxr-xr-x 2 node node 4096 May 24 12:07 .
+drwxr-xr-x 3 node node 4096 May 22 15:34 ..
+-rw-r--r-- 1 node node    0 May 24 12:07 gemini_call.sh
+----
+root@srv1575656:~# sudo docker exec 5984e6dfcf5f sh -c 'ls -la /home/node/.openclaw/credentials || true'
+total 20
+drwxr-xr-x  3 node node 4096 May 22 15:32 .
+drwxrwxrwx 10 root root 4096 May 22 15:48 ..
+-rw-r--r--  1 root root  657 May 22 15:32 olsera.json
+drwxr-xr-x  3 node node 4096 May 13 10:01 whatsapp
+-rw-------  1 node node   37 May 20 12:08 whatsapp-pairing.json
+root@srv1575656:~# sudo docker inspect 5984e6dfcf5f --format '{{json .Mounts}}' | sed 's/\\\"/"/g'
+[{"Type":"volume","Name":"openclaw_openclaw-gateway_config","Source":"/var/lib/docker/volumes/openclaw_openclaw-gateway_config/_data","Destination":"/home/node/.openclaw","Driver":"local","Mode":"z","RW":true,"Propagation":""},{"Type":"volume","Name":"openclaw_openclaw-gateway_workspace","Source":"/var/lib/docker/volumes/openclaw_openclaw-gateway_workspace/_data","Destination":"/home/node/.openclaw/workspace","Driver":"local","Mode":"z","RW":true,"Propagation":""}]
+root@srv1575656:~# sudo docker exec 5984e6dfcf5f sh -c 'curl -I https://generativelanguage.googleapis.com -m 10 || true'
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0  1561    0     0    0     0      0      0 --:--:-- HTTP/2 404 :--:--     0
+date: Sun, 24 May 2026 12:15:07 GMT
+content-type: text/html; charset=UTF-8
+server: scaffolding on HTTPServer2
+content-length: 1561
+x-xss-protection: 0
+x-frame-options: SAMEORIGIN
+x-content-type-options: nosniff
+server-timing: gfet4t7; dur=7
+alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+
+--:--:-- --:--:--     0
+root@srv1575656:~# # ganti ~/gemini-sa.json dengan path file Anda
+sudo docker cp ~/gemini-sa.json 5984e6dfcf5f:/home/node/.openclaw/credentials/gemini-sa.json
+sudo docker exec 5984e6dfcf5f sh -c 'chown node:node /home/node/.openclaw/credentials/gemini-sa.json && chmod 600 /home/node/.openclaw/credentials/gemini-sa.json'
+lstat /root/gemini-sa.json: no such file or directory
+chown: cannot access '/home/node/.openclaw/credentials/gemini-sa.json': No such file or directory
+root@srv1575656:~# # jika gcloud ada di image/container: aktifkan SA lalu tes
+sudo docker exec -it 5984e6dfcf5f sh -c 'gcloud auth activate-service-account --key-file=/home/node/.openclaw/credentials/gemini-sa.json || true; /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh "Tes koneksi dari container dengan SA" || true'
+sh: 1: gcloud: Permission denied
+sh: 1: /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh: Permission denied
+root@srv1575656:~# sudo docker exec 5984e6dfcf5f sh -c 'chmod 755 /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh && ls -l /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh'
+-rwxr-xr-x 1 node node 0 May 24 12:07 /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh
+root@srv1575656:~# sudo docker exec 5984e6dfcf5f sh -c 'sh -n /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh || true'
+root@srv1575656:~# export GEMINI_ACCESS_TOKEN="$(gcloud auth print-access-token 2>/dev/null || true)"
+echo "TOKEN_LEN=${#GEMINI_ACCESS_TOKEN}"
+TOKEN_LEN=0
+root@srv1575656:~# # jika TOKEN_LEN > 10 (dari langkah 2)
+sudo docker exec -e GEMINI_ACCESS_TOKEN="$GEMINI_ACCESS_TOKEN" 5984e6dfcf5f sh -c '/home/node/.openclaw/skills/olsera/scripts/gemini_call.sh "Tes koneksi via token sementara"' || true
+root@srv1575656:~# export GEMINI_ACCESS_TOKEN="$(gcloud auth print-access-token)"
+echo "Token created: ${#GEMINI_ACCESS_TOKEN} chars"
+Command 'gcloud' not found, but can be installed with:
+snap install google-cloud-cli
+Token created: 0 chars
+root@srv1575656:~# sudo docker exec -e GEMINI_ACCESS_TOKEN="$GEMINI_ACCESS_TOKEN" 5984e6dfcf5f sh -c '/home/node/.openclaw/skills/olsera/scripts/gemini_call.sh "Tes koneksi via token sementara"' || true
+root@srv1575656:~# snap install google-cloud-cli --classic
+gcloud init  # login dengan akun Google yang punya akses Gemini API
+Download snap "snapd" (26865) from channel "stable"                                         -export GEMINI_ACCESS_TOKEN="$(gcloud auth print-access-token)"
+sudo docker exec -e GEMINI_ACCESS_TOKEN="$GEMINI_ACCESS_TOKEN" 5984e6dfcf5f sh -c '/home/nodeDownload snap "snapd" (26865) from channel "stable"                                         \
+2026-05-24T12:22:54Z INFO Waiting for automatic snapd restart...
+google-cloud-cli 569.0.0 from Cloud SDK (google-cloud-sdk✓) installed
+Welcome! This command will take you through the configuration of gcloud.
+
+Your current configuration has been set to: [default]
+
+You can skip diagnostics next time by using the following flag:
+  gcloud init --skip-diagnostics
+
+Network diagnostic detects and fixes local network connection issues.
+Checking network connection...done.                                                         
+Reachability Check passed.
+Network diagnostic passed (1/1 checks passed).
+
+You must sign in to continue. Would you like to sign in (selecting "Y" will open your browser to the sign-in page where you complete authentication) (Y/n)?  Please enter 'y' or 'n':  Please enter 'y' or 'n':  y
+
+Go to the following link in your browser, and complete the sign-in prompts:
+
+    https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=32555940559.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fsdk.cloud.google.com%2Fauthcode.html&scope=openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fappengine.admin+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fsqlservice.login+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcompute+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Faccounts.reauth&state=rTv9np0XTaCrqa3iEhb3Q0YcUQ7Z4I&prompt=consent&token_usage=remote&access_type=offline&code_challenge=yxzInsmjUNDruyfwl2umedTesl_xWoBN4WMVosOqmMw&code_challenge_method=S256
+
+Once finished, enter the verification code provided in your browser: 4/0AeoWuM-sibCoBktBD3BOlseEb30d_6BHQCAKdpD8WBZe5mDc4uHYUEpiYIdXYgiXIbMyMA
+You are signed in as: [handoyokristanto@gmail.com].
+
+Pick cloud project to use: 
+ [1] axial-radius-192704
+ [2] gen-lang-client-0898567811
+ [3] majestic-voice-451909-v7
+ [4] Enter a project ID
+ [5] Create a new project
+Please enter numeric choice or text value (must exactly match list item):  2
+
+Your current project has been set to: [gen-lang-client-0898567811].
+
+Not setting default zone/region (this feature makes it easier to use
+[gcloud compute] by setting an appropriate default value for the
+--zone and --region flag).
+See https://cloud.google.com/compute/docs/gcloud-compute section on how to set
+default compute region and zone manually. If you would like [gcloud init] to be
+able to do this for you the next time you run it, make sure the
+Compute Engine API is enabled for your project on the
+https://console.developers.google.com/apis page.
+
+Created a default .boto configuration file at [/root/.boto]. See this file and
+[https://cloud.google.com/storage/docs/gsutil/commands/config] for more
+information about configuring Google Cloud Storage.
+The Google Cloud CLI is configured and ready to use!
+
+* Commands that require authentication will use handoyokristanto@gmail.com by default
+* Commands will reference project `gen-lang-client-0898567811` by default
+Run `gcloud help config` to learn how to change individual settings
+
+This gcloud configuration is called [default]. You can create additional configurations if you work with multiple accounts and/or projects.
+Run `gcloud topic configurations` to learn more.
+
+Some things to try next:
+
+* Run `gcloud --help` to see the Cloud Platform services you can interact with. And run `gcloud help COMMAND` to get help on any gcloud command.
+* Run `gcloud topic --help` to learn about advanced features of the CLI like arg files and output formatting
+* Run `gcloud cheat-sheet` to see a roster of go-to `gcloud` commands.
+root@srv1575656:~# export GEMINI_ACCESS_TOKEN="$(gcloud auth print-access-token)"
+echo "Token created: ${#GEMINI_ACCESS_TOKEN} chars"
+Token created: 258 chars
+root@srv1575656:~# sudo docker exec -e GEMINI_ACCESS_TOKEN="$GEMINI_ACCESS_TOKEN" 5984e6dfcf5f sh -c '/home/node/.openclaw/skills/olsera/scripts/gemini_call.sh "Halo, ini tes koneksi OpenClaw ke Gemini API. Jelaskan singkat apa itu OpenClaw."' || true
+root@srv1575656:~# sudo docker exec -e GEMINI_ACCESS_TOKEN="$GEMINI_ACCESS_TOKEN" 5984e6dfcf5f sh -c '/home/node/.openclaw/skills/olsera/scripts/gemini_call.sh "Tes singkat" 2>&1'
+root@srv1575656:~# sudo docker exec 5984e6dfcf5f sh -c 'ls -la /home/node/.openclaw/skills/olsera/scripts/'
+total 8
+drwxr-xr-x 2 node node 4096 May 24 12:07 .
+drwxr-xr-x 3 node node 4096 May 22 15:34 ..
+-rwxr-xr-x 1 node node    0 May 24 12:07 gemini_call.sh
+root@srv1575656:~# sudo docker exec 5984e6dfcf5f sh -c 'cat > /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh <<'"'"'EOFSCRIPT'"'"'
+#!/usr/bin/env sh
+set -eu
+
+PROMPT="${1:-Halo}"
+MODEL="google/gemini-3-pro-preview"
+API_URL="https://generativelanguage.googleapis.com/v1/models/${MODEL}:generateText"
+MAX_TOKENS="512"
+
+if [ -z "${GEMINI_ACCESS_TOKEN:-}" ]; then
+  echo "ERROR: GEMINI_ACCESS_TOKEN not set" >&2
+  exit 1
+fi
+
+curl -sS -X POST "$API_URL" \
+  -H "Authorization: Bearer $GEMINI_ACCESS_TOKEN" \
+  -H "Content-Type: application/json; charset=utf-8" \
+  -d "{\"prompt\": {\"text\": \"$PROMPT\"}, \"maxOutputTokens\": $MAX_TOKENS}"
+EOFSCRIPT
+'
+
+# verify file is not empty
+sudo docker exec 5984e6dfcf5f sh -c 'ls -la /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh && echo "---" && head -5 /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh'
+-rwxr-xr-x 1 node node 505 May 24 12:39 /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh
+---
+#!/usr/bin/env sh
+set -eu
+
+PROMPT="${1:-Halo}"
+MODEL="google/gemini-3-pro-preview"
+root@srv1575656:~# sudo docker exec -e GEMINI_ACCESS_TOKEN="$GEMINI_ACCESS_TOKEN" 5984e6dfcf5f sh -c '/home/node/.openclaw/skills/olsera/scripts/gemini_call.sh "Tes koneksi ke Gemini API"' 2>&1
+root@srv1575656:~# sudo docker exec -e GEMINI_ACCESS_TOKEN="$GEMINI_ACCESS_TOKEN" 5984e6dfcf5f sh -c '/home/node/.openclaw/skills/olsera/scripts/gemini_call.sh "Tes koneksi ke Gemini API" 2>&1'
+root@srv1575656:~# ^C
+root@srv1575656:~# ^C
+root@srv1575656:~# # keluar dari hang: Ctrl+C
+
+# cek apakah curl bisa akses endpoint (dengan timeout 5 detik)
+sudo docker exec -e GEMINI_ACCESS_TOKEN="$GEMINI_ACCESS_TOKEN" 5984e6dfcf5f sh -c 'timeout 5 curl -v -X POST "https://generativelanguage.googleapis.com/v1/models/google/gemini-3-pro-preview:generateText" -H "Authorization: Bearer $GEMINI_ACCESS_TOKEN" -H "Content-Type: application/json" -d "{\"prompt\":{\"text\":\"test\"}}" 2>&1 | head -100' || true
+Note: Unnecessary use of -X or --request, POST is already inferred.
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 172.217.25.10:443...
+* Connected to generativelanguage.googleapis.com (172.217.25.10) port 443 (#0)
+* ALPN: offers h2,http/1.1
+} [5 bytes data]
+* TLSv1.3 (OUT), TLS handshake, Client hello (1):
+} [512 bytes data]
+*  CAfile: /etc/ssl/certs/ca-certificates.crt
+*  CApath: /etc/ssl/certs
+{ [5 bytes data]
+* TLSv1.3 (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* TLSv1.3 (IN), TLS handshake, Encrypted Extensions (8):
+{ [15 bytes data]
+* TLSv1.3 (IN), TLS handshake, Certificate (11):
+{ [4209 bytes data]
+* TLSv1.3 (IN), TLS handshake, CERT verify (15):
+{ [78 bytes data]
+* TLSv1.3 (IN), TLS handshake, Finished (20):
+{ [52 bytes data]
+* TLSv1.3 (OUT), TLS change cipher, Change cipher spec (1):
+} [1 bytes data]
+* TLSv1.3 (OUT), TLS handshake, Finished (20):
+} [52 bytes data]
+* SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=upload.video.google.com
+*  start date: May  7 15:53:08 2026 GMT
+*  expire date: Jul 30 15:53:07 2026 GMT
+*  subjectAltName: host "generativelanguage.googleapis.com" matched cert's "*.googleapis.com"*  issuer: C=US; O=Google Trust Services; CN=WR2
+*  SSL certificate verify ok.
+} [5 bytes data]
+* using HTTP/2
+* h2h3 [:method: POST]
+* h2h3 [:path: /v1/models/google/gemini-3-pro-preview:generateText]
+* h2h3 [:scheme: https]
+* h2h3 [:authority: generativelanguage.googleapis.com]
+* h2h3 [user-agent: curl/7.88.1]
+* h2h3 [accept: */*]
+* h2h3 [authorization: Bearer [REDACTED_OAUTH_TOKEN]]
+* h2h3 [content-type: application/json]
+* h2h3 [content-length: 26]
+* Using Stream ID: 1 (easy handle 0x5f1d5bd6b7a0)
+} [5 bytes data]
+> POST /v1/models/google/gemini-3-pro-preview:generateText HTTP/2
+> Host: generativelanguage.googleapis.com
+> user-agent: curl/7.88.1
+> accept: */*
+> authorization: Bearer [REDACTED_OAUTH_TOKEN]
+> content-type: application/json
+> content-length: 26
+> 
+} [5 bytes data]
+* We are completely uploaded and fine
+{ [5 bytes data]
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+{ [282 bytes data]
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+{ [282 bytes data]
+* old SSL session ID is stale, removing
+{ [5 bytes data]
+< HTTP/2 404 
+< content-type: text/html
+< date: Sun, 24 May 2026 12:40:53 GMT
+< server: scaffolding on HTTPServer2
+< content-length: 0
+< x-xss-protection: 0
+< x-frame-options: SAMEORIGIN
+< x-content-type-options: nosniff
+< server-timing: gfet4t7; dur=9
+< alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+< 
+{ [5 bytes data]
+100    26    0     0  100    26      0    472 --:--:-- --:--:-- --:--:--   481
+* Connection #0 to host generativelanguage.googleapis.com left intact
+root@srv1575656:~# sudo docker exec 5984e6dfcf5f sh -c 'cat > /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh <<'"'"'EOFSCRIPT'"'"'
+#!/usr/bin/env sh
+set -eu
+
+PROMPT="${1:-Halo}"
+MODEL="${MODEL:-gemini-pro}"
+API_URL="https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent"
+MAX_TOKENS="512"
+
+if [ -z "${GEMINI_ACCESS_TOKEN:-}" ]; then
+  echo "ERROR: GEMINI_ACCESS_TOKEN not set" >&2
+  exit 1
+fi
+
+# Gunakan format request yang benar untuk Gemini API
+curl -sS -X POST "$API_URL" \
+  -H "Authorization: Bearer $GEMINI_ACCESS_TOKEN" \
+  -H "Content-Type: application/json; charset=utf-8" \
+  -d "{\"contents\": [{\"parts\": [{\"text\": \"$PROMPT\"}]}]}"
+EOFSCRIPT
+'
+
+# Verify file is written
+sudo docker exec 5984e6dfcf5f sh -c 'ls -la /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh'
+-rwxr-xr-x 1 node node 543 May 24 12:41 /home/node/.openclaw/skills/olsera/scripts/gemini_call.sh
+root@srv1575656:~# timeout 10 sudo docker exec -e GEMINI_ACCESS_TOKEN="$GEMINI_ACCESS_TOKEN" 5984e6dfcf5f sh -c '/home/node/.openclaw/skills/olsera/scripts/gemini_call.sh "Jelaskan singkat apa itu OpenClaw" 2>&1' || true
+{
+  "error": {
+    "code": 403,
+    "message": "Request had insufficient authentication scopes.",
+    "status": "PERMISSION_DENIED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "ACCESS_TOKEN_SCOPE_INSUFFICIENT",
+        "metadata": {
+          "method": "google.ai.generativelanguage.v1beta.GenerativeService.GenerateContent",
+          "service": "generativelanguage.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+root@srv1575656:~# gcloud services enable generativelanguage.googleapis.com --project=gen-lang-client-0898567811
+root@srv1575656:~# gcloud projects add-iam-policy-binding gen-lang-client-0898567811 \
+  --member="user:handoyokristanto@gmail.com" \
+  --role="roles/aiplatform.user"
+Updated IAM policy for project [gen-lang-client-0898567811].
+bindings:
+- members:
+  - user:handoyokristanto@gmail.com
+  role: roles/aiplatform.user
+- members:
+  - user:handoyokristanto@gmail.com
+  role: roles/owner
+etag: BwZSj54c5QM=
+version: 1
+root@srv1575656:~# export GEMINI_ACCESS_TOKEN="$(gcloud auth print-access-token)"
+sudo docker exec -e GEMINI_ACCESS_TOKEN="$GEMINI_ACCESS_TOKEN" 5984e6dfcf5f \
+  sh -c '/home/node/.openclaw/skills/olsera/scripts/gemini_call.sh "Tes koneksi setelah grant role" 2>&1' || true
+{
+  "error": {
+    "code": 403,
+    "message": "Request had insufficient authentication scopes.",
+    "status": "PERMISSION_DENIED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "ACCESS_TOKEN_SCOPE_INSUFFICIENT",
+        "metadata": {
+          "method": "google.ai.generativelanguage.v1beta.GenerativeService.GenerateContent",
+          "service": "generativelanguage.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+root@srv1575656:~# 

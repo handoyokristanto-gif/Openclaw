@@ -1,0 +1,5 @@
+{
+  "api_token": "YOUR_OLSERA_API_TOKEN",
+  "store_url": "https://grandivo.olsera.io",
+  "notes": "Replace YOUR_OLSERA_API_TOKEN with the actual token obtained from olsera.io"
+}
