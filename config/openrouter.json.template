@@ -1,0 +1,6 @@
+{
+  "provider": "openrouter",
+  "model": "google/gemini-flash-1.5",
+  "api_key": "sk-or-v1-YOUR_OPENROUTER_API_KEY",
+  "notes": "Ensure OPENROUTER_API_KEY is exported in your environment or set in ~/.openclaw/openclaw.json"
+}
