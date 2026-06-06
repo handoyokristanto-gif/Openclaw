@@ -1,5 +1,9 @@
 # OpenClaw Configuration Backup
 
+**Owner:** Handoyo Kristanto  
+**Email:** handoyokristanto@gmail.com  
+
+
 Repositori ini berisi cadangan konfigurasi, skrip, dan dokumentasi untuk proyek OpenClaw yang terintegrasi dengan LLM Gemini dan API Olsera.io.
 
 ## Struktur Direktori
