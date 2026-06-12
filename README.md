@@ -10,7 +10,7 @@ Repositori ini berisi cadangan konfigurasi, skrip, dan dokumentasi untuk proyek 
 
 *   `config/`: Berisi template file konfigurasi (misalnya `olsera.json.template`). **Jangan simpan token asli di sini secara publik.**
 *   `skills/`: Berisi definisi skill OpenClaw dan skrip pendukung.
-    *   `olsera/scripts/gemini_call.sh`: Skrip universal untuk memanggil API Gemini (Direct) atau OpenRouter.
+    *   `olsera/scripts/gemini_call.sh`: Skrip universal untuk memanggil API Gemini (Direct) atau OpenRouter (dengan fitur auto-retry dan header stabilitas).
 *   `docs/`: Dokumentasi dan rangkuman sesi konfigurasi.
 
 ## Instruksi Pemulihan (Recovery)
@@ -24,4 +24,4 @@ Repositori ini berisi cadangan konfigurasi, skrip, dan dokumentasi untuk proyek 
 
 ## Catatan Penting
 
-Konfigurasi ini bersifat "fragile" (mudah error). Jika terjadi `Bad Gateway`, periksa status container Docker dan konfigurasi Traefik di Easypanel.
+Konfigurasi ini telah ditingkatkan untuk stabilitas koneksi OpenRouter dengan penambahan header `HTTP-Referer`, `X-Title`, dan mekanisme retry. Jika terjadi `Bad Gateway`, periksa status container Docker dan konfigurasi Traefik di Easypanel.
