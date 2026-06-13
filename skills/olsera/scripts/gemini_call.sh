@@ -5,8 +5,9 @@ set -eu
 # Supports: Google AI Studio (Direct) and OpenRouter (OpenAI-compatible)
 
 PROMPT="${1:-$(cat -)}"
-# Default to OpenRouter Gemini Flash 1.5 if not specified
-MODEL="${MODEL:-google/gemini-flash-1.5}"
+# Default to OpenRouter Auto if not specified
+# Gunakan format openrouter/<provider>/<model> untuk kejelasan
+MODEL="${MODEL:-openrouter/auto}"
 MAX_TOKENS="${MAX_TOKENS:-1024}"
 RETRY_COUNT=3
 RETRY_DELAY=2
@@ -56,6 +57,7 @@ EOF
         -H "Content-Type: application/json" \
         -H "HTTP-Referer: https://github.com/handoyokristanto-gif/Openclaw" \
         -H "X-Title: OpenClaw" \
+        -H "X-OpenRouter-Title: OpenClaw" \
         -d "$PAYLOAD")
       
       # Check if response has choices

@@ -1,6 +1,6 @@
 {
   "provider": "openrouter",
-  "model": "google/gemini-flash-1.5",
+  "model": "openrouter/auto",
   "api_key": "sk-or-v1-YOUR_OPENROUTER_API_KEY",
   "api_url": "https://openrouter.ai/api/v1/chat/completions",
   "headers": {
@@ -8,9 +8,15 @@
     "X-Title": "OpenClaw"
   },
   "recommended_models": [
-    "google/gemini-flash-1.5",
-    "anthropic/claude-3-haiku",
-    "meta-llama/llama-3-8b-instruct"
+    "openrouter/auto",
+    "openrouter/google/gemini-flash-1.5",
+    "openrouter/anthropic/claude-3-haiku",
+    "openrouter/meta-llama/llama-3-8b-instruct",
+    "openrouter/x-ai/grok-4.1-fast"
   ],
-  "notes": "Ensure OPENROUTER_API_KEY is exported in your environment. The script gemini_call.sh now includes automatic retries and proper headers for stability."
+  "setup_commands": [
+    "openclaw onboard --auth-choice apiKey --token-provider openrouter --token YOUR_API_KEY",
+    "openclaw models set openrouter/auto"
+  ],
+  "notes": "PENTING: Pastikan variabel lingkungan OPENROUTER_API_KEY sudah diekspor. Gunakan format model 'openrouter/<provider>/<model>' agar OpenClaw mengenali plugin yang benar."
 }
