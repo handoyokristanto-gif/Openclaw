@@ -42,13 +42,21 @@ Ini adalah cara termudah dan paling direkomendasikan untuk mengkonfigurasi OpenR
 
     Perintah ini akan menulis kredensial ke konfigurasi OpenClaw Anda dan mengatur OpenRouter sebagai penyedia aktif. [3]
 
-2.  **Atur Model Default (Opsional):** Secara default, onboarding akan mengatur `openrouter/auto`. Jika Anda ingin menggunakan model spesifik, Anda bisa mengaturnya nanti:
+2.  **Atur Model Default untuk Saldo 0:** Jika saldo Anda 0, sangat disarankan untuk menggunakan perute model gratis otomatis:
 
     ```bash
-    openclaw models set openrouter/<provider>/<model>
-    # Contoh: openclaw models set openrouter/google/gemini-flash-1.5
-    # Contoh: openclaw models set openrouter/x-ai/grok-4.1-fast
+    openclaw models set openrouter/free
     ```
+
+    Atau pilih model gratis spesifik:
+
+    ```bash
+    openclaw models set google/gemini-2.0-flash-exp:free
+    # Atau
+    openclaw models set meta-llama/llama-3.1-8b-instruct:free
+    ```
+
+    **Catatan:** `openrouter/auto` mungkin masih mencoba merutekan ke model berbayar terbaik, yang akan gagal jika saldo Anda 0. Menggunakan `openrouter/free` memastikan hanya model gratis yang digunakan. [3]
 
 ### Metode B: Konfigurasi Manual di `openclaw.json`
 

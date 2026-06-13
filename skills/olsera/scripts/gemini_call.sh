@@ -5,9 +5,9 @@ set -eu
 # Supports: Google AI Studio (Direct) and OpenRouter (OpenAI-compatible)
 
 PROMPT="${1:-$(cat -)}"
-# Default to OpenRouter Auto if not specified
+# Default to OpenRouter Free if not specified (Ideal untuk saldo 0)
 # Gunakan format openrouter/<provider>/<model> untuk kejelasan
-MODEL="${MODEL:-openrouter/auto}"
+MODEL="${MODEL:-openrouter/free}"
 MAX_TOKENS="${MAX_TOKENS:-1024}"
 RETRY_COUNT=3
 RETRY_DELAY=2
