@@ -10,7 +10,7 @@ PROMPT="${1:-$(cat -)}"
 # Default to a robust free model if not specified. 
 # 'openrouter/auto' can be unstable for free tier, so we prioritize specific free models.
 # Preferred: google/gemini-2.0-flash-exp:free (Fast, large context, free)
-DEFAULT_MODEL="google/gemini-2.0-flash-exp:free"
+DEFAULT_MODEL="meta-llama/llama-3.3-70b-instruct:free"
 MODEL="${MODEL:-$DEFAULT_MODEL}"
 
 # TOKEN EFFICIENCY: 
@@ -47,7 +47,7 @@ call_llm() {
   # if the generic one fails or to ensure we stay in the free tier.
   case "$MODEL" in
     "openrouter/free"|"openrouter/auto")
-      CURRENT_MODEL="google/gemini-2.0-flash-exp:free"
+      CURRENT_MODEL="meta-llama/llama-3.3-70b-instruct:free"
       ;;
     *)
       # Ensure :free suffix for OpenRouter if not already there and it's intended to be free
@@ -95,9 +95,14 @@ call_llm() {
         
         # STRATEGIC FALLBACK: If 403 (Forbidden) or 401 (Unauthorized) on a specific model, 
         # try the most reliable free model on next attempt.
-        if [ "$error_code" = "403" ] || [ "$error_code" = "401" ] || [ "$error_code" = "400" ]; then
-           echo "Switching to reliable fallback: google/gemini-2.0-flash-exp:free" >&2
-           CURRENT_MODEL="google/gemini-2.0-flash-exp:free"
+        if [ "$error_code" = "403" ] || [ "$error_code" = "401" ] || [ "$error_code" = "400" ] || [ "$error_code" = "404" ] || [ "$error_code" = "429" ]; then
+           # Cycle through verified available free models
+           case "$CURRENT_MODEL" in
+             "meta-llama/llama-3.3-70b-instruct:free") CURRENT_MODEL="meta-llama/llama-3.2-3b-instruct:free" ;;
+             "meta-llama/llama-3.2-3b-instruct:free") CURRENT_MODEL="qwen/qwen3-coder:free" ;;
+             *) CURRENT_MODEL="meta-llama/llama-3.3-70b-instruct:free" ;;
+           esac
+           echo "Switching to fallback: $CURRENT_MODEL" >&2
         fi
       fi
 
