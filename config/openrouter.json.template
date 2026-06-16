@@ -8,15 +8,15 @@
     "X-Title": "OpenClaw"
   },
   "recommended_models": [
-    "openrouter/free",
     "google/gemini-2.0-flash-exp:free",
-    "meta-llama/llama-3.1-8b-instruct:free",
-    "mistralai/mistral-7b-instruct:free",
+    "meta-llama/llama-3.3-70b-instruct:free",
+    "deepseek/deepseek-chat:free",
+    "mistralai/pixtral-12b:free",
     "openrouter/auto"
   ],
   "setup_commands": [
     "openclaw onboard --auth-choice apiKey --token-provider openrouter --token YOUR_API_KEY",
     "openclaw models set openrouter/free"
   ],
-  "notes": "PENTING: Pastikan variabel lingkungan OPENROUTER_API_KEY sudah diekspor. Gunakan format model 'openrouter/<provider>/<model>' agar OpenClaw mengenali plugin yang benar."
+  "notes": "PENTING: Gunakan model dengan suffix ':free' untuk menghindari biaya. Script gemini_call.sh sekarang memiliki fallback otomatis ke Gemini 2.0 Flash jika model pilihan gagal atau tidak tersedia di tier gratis."
 }
