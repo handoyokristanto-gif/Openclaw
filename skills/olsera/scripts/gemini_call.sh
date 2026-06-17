@@ -50,11 +50,21 @@ call_llm() {
       CURRENT_MODEL="meta-llama/llama-3.3-70b-instruct:free"
       ;;
     *)
-      # Ensure :free suffix for OpenRouter if not already there and it's intended to be free
-      if [ "$PROVIDER" = "openrouter" ] && ! echo "$MODEL" | grep -q ":free"; then
-        # If user didn't specify :free but we want to be safe, we could append it, 
-        # but better to trust the user unless it's the default.
-        CURRENT_MODEL="$MODEL"
+      # Ensure correct OpenRouter model ID format
+      if [ "$PROVIDER" = "openrouter" ]; then
+        case "$MODEL" in
+          "meta-llama/llama-3.3-70b-instruct:free")
+            CURRENT_MODEL="meta-llama/llama-3.3-70b-instruct:free"
+            ;;
+          "llama-3.3-70b-instruct:free")
+            # Handle case where provider prefix might be missing
+            CURRENT_MODEL="meta-llama/llama-3.3-70b-instruct:free"
+            ;;
+          *)
+            # Default logic for other models
+            CURRENT_MODEL="$MODEL"
+            ;;
+        esac
       else
         CURRENT_MODEL="$MODEL"
       fi
