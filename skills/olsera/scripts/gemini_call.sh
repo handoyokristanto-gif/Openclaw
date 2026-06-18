@@ -47,19 +47,22 @@ call_llm() {
   # if the generic one fails or to ensure we stay in the free tier.
   # We also handle variations of the Llama 3.3 70B model ID to prevent "Unknown model" errors.
   case "$MODEL" in
-    "openrouter/free"|"openrouter/auto"|"meta-llama/llama-3.3-70b-instruct:free"|"llama-3.3-70b-instruct:free"|"meta-llama/llama-3.3-70b-instruct")
+    "openrouter/free"|"openrouter/auto"|"meta-llama/llama-3.3-70b-instruct:free"|"llama-3.3-70b-instruct:free"|"meta-llama/llama-3.3-70b-instruct"|"openrouter/meta-llama/llama-3.3-70b-instruct:free")
       CURRENT_MODEL="meta-llama/llama-3.3-70b-instruct:free"
       ;;
-    "google/gemini-2.0-flash-exp:free"|"gemini-2.0-flash-exp:free"|"google/gemini-2.0-flash-exp")
+    "google/gemini-2.0-flash-exp:free"|"gemini-2.0-flash-exp:free"|"google/gemini-2.0-flash-exp"|"openrouter/google/gemini-2.0-flash-exp:free")
       CURRENT_MODEL="google/gemini-2.0-flash-exp:free"
       ;;
     *)
       # For any other model, if using OpenRouter, ensure it has the :free suffix if it's a known free model
+      # and strip the 'openrouter/' prefix if present for the internal API call.
       if [ "$PROVIDER" = "openrouter" ]; then
-        if echo "$MODEL" | grep -qE "llama-3.2-3b-instruct|qwen3-coder|pixtral-12b|deepseek-chat" && ! echo "$MODEL" | grep -q ":free"; then
-          CURRENT_MODEL="$MODEL:free"
+        # Strip prefix for internal mapping if present
+        TEMP_MODEL=$(echo "$MODEL" | sed 's|^openrouter/||')
+        if echo "$TEMP_MODEL" | grep -qE "llama-3.2-3b-instruct|qwen3-coder|pixtral-12b|deepseek-chat" && ! echo "$TEMP_MODEL" | grep -q ":free"; then
+          CURRENT_MODEL="$TEMP_MODEL:free"
         else
-          CURRENT_MODEL="$MODEL"
+          CURRENT_MODEL="$TEMP_MODEL"
         fi
       else
         CURRENT_MODEL="$MODEL"

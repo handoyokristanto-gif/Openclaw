@@ -1,6 +1,6 @@
 {
   "provider": "openrouter",
-  "model": "meta-llama/llama-3.3-70b-instruct:free",
+  "model": "openrouter/meta-llama/llama-3.3-70b-instruct:free",
   "api_key": "sk-or-v1-YOUR_OPENROUTER_API_KEY",
   "api_url": "https://openrouter.ai/api/v1/chat/completions",
   "headers": {
@@ -8,10 +8,10 @@
     "X-Title": "OpenClaw"
   },
   "recommended_models": [
-    "google/gemini-2.0-flash-exp:free",
-    "meta-llama/llama-3.3-70b-instruct:free",
-    "deepseek/deepseek-chat:free",
-    "mistralai/pixtral-12b:free",
+    "openrouter/google/gemini-2.0-flash-exp:free",
+    "openrouter/meta-llama/llama-3.3-70b-instruct:free",
+    "openrouter/deepseek/deepseek-chat:free",
+    "openrouter/mistralai/pixtral-12b:free",
     "openrouter/auto"
   ],
   "setup_commands": [
