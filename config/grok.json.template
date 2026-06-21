@@ -1,0 +1,17 @@
+{
+  "provider": "xai",
+  "model": "grok-4.3",
+  "api_key": "xai-YOUR_XAI_API_KEY",
+  "api_url": "https://api.x.ai/v1/chat/completions",
+  "recommended_models": [
+    "grok-4.3",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-0309-non-reasoning",
+    "grok-build-0.1"
+  ],
+  "setup_commands": [
+    "openclaw models auth login --provider xai --method api-key",
+    "openclaw models set xai/grok-4.3"
+  ],
+  "notes": "PENTING: Gunakan XAI_API_KEY untuk autentikasi. Skrip grok_call.sh telah dioptimalkan untuk menggunakan API xAI secara langsung dengan dukungan rate limiting dan retry."
+}
