@@ -44,7 +44,9 @@ call_llm() {
       -d "$PAYLOAD")
     
     # VALIDATION & ERROR HANDLING
+    # Check for successful response
     if echo "$response" | jq -e '.choices[0].message.content' >/dev/null 2>&1; then
+      # Use -j to avoid extra newlines and handle potential control characters cleanly
       echo "$response" | jq -r '.choices[0].message.content'
       return 0
     else
